@@ -26,13 +26,13 @@ var buildStyles = function() {
   };
 
   var injectFiles = gulp.src([
-    path.join(conf.paths.src, '/_assets/stylesheets/**/*.scss'),
-    path.join('!' + conf.paths.src, '/_assets/stylesheets/index.scss')
+    path.join(conf.paths.src, '/**/*.scss'),
+    path.join('!' + conf.paths.src, '/**/*.scss')
   ], { read: false });
 
   var injectOptions = {
     transform: function(filePath) {
-      filePath = filePath.replace(conf.paths.src + '/_assets/stylesheets/', '');
+      filePath = filePath.replace(conf.paths.src + '/**/*.scss/', '');
       //do not import .scss file starting with _
       if (path.basename(filePath).indexOf('_') === 0) {
         return '';
@@ -46,7 +46,7 @@ var buildStyles = function() {
 
 
   return gulp.src([
-      path.join(conf.paths.src, '/_assets/stylesheets/index.scss')
+      path.join(conf.paths.src, '/**/*.scss')
     ])
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
