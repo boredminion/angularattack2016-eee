@@ -5,8 +5,11 @@
         .module('reading-ninja', [
 
             'ngSanitize',
+            'ngAnimate',
             'ngMessages',
+            'ngTouch',
             'ui.router',
+            'ui.bootstrap',
 
             'reading-ninja.home',
             'reading-ninja.services'
