@@ -1,9 +1,9 @@
 <div class="home container">
     <div class="row heading">
-        <div class="col col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <div class="col col-md-8">
             Reading Ninja welcomes you
         </div>
-        <div class="col col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="col col-md-4">
             <a class="Button">Sign up</a>
             <a class="Button">Log in</a>
         </div>
@@ -11,22 +11,49 @@
 
     </div>
     <div class="padding-10">
-        <div class="width-30">
-            Article of the day
+        <div class="row">
+            <div class="col col-md-4 article-section">
+                Article of the day
+            </div>
+            <div class="col col-md-8 category-section">
+                What kind of articles/news do you want?
+                <div class="row">
+                    <div class="tags-container">
+                        <div class="tags-inline" ng-repeat="category in vm.selectedCategories track by $index">
+                            <div class="tag-style">
+                                <strong><span class="text-primary" ng-bind="category.name"></span></strong>
+                                <span><i ng-click="vm.deleteCategory($index)" class="fa fa-times-circle"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group" uib-dropdown is-open="status.isopen">
+                    <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                        Category <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                        <li role="menuitem" ng-repeat="category in vm.categories" ng-click="vm.selectCategory(category)">
+                            <button class="dropdown-option"
+                                    ng-class="{'disabled' : category.selected}"
+                                    ng-disabled="category.selected">
+                                {{category.name}}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div ng-if="vm.selectedCategories.length">
+                    <div class="padding-top-15">
+                        How much time do you have? <input type="text" value="{{vm.timeValue}}" readonly> minutes
+                    </div>
+                    <div class="padding-top-15">
+                        <input type="range" ng-model="vm.timeValue" min="0" max="60" ng-change="vm.timeChanged()">
+                    </div>
+                    <div class="row">
+                        <div class="col col-md-1">0</div>
+                        <div class="col col-md-offset-10 col-1 align-right">60</div>
+                    </div>
+                </div>
 
-        </div>
-        <div class="width-70">
-            Category
-            <div class="btn-group" uib-dropdown is-open="status.isopen">
-                <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
-                    Button dropdown <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                    <li role="menuitem"><a href="#">Sports</a></li>
-                    <li role="menuitem"><a href="#">Nature</a></li>
-                    <li role="menuitem"><a href="#">Illinois</a></li>
-                    <li role="menuitem"><a href="#">International</a></li>
-                </ul>
             </div>
         </div>
     </div>
