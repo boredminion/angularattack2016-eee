@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "authors": [
     "Divyanshu mittal",
-    "Vamsi Kotagari"
+    "Vamsi Kotagiri"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
     "angular": "~1.4.7",
     "angular-animate": "~1.4.7",
     "angular-sanitize": "~1.4.7",
     "angular-messages": "~1.4.7",
     "angular-touch": "~1.4.7",
-    "angular-bootstrap": "~1.2.5",
+    "angular-bootstrap": "~0.14.2",
     "angular-ui-router": "~0.2.18",
     "bootstrap-sass": "~3.3.5",
     "angular-ui-notification": "~0.0.14",
@@ -20,7 +19,8 @@
     "lodash": "~4.7.0",
     "moment": "~2.12.0",
     "angular-loading-bar": "~0.8.0",
-    "font-awesome": "~4.5.0"
+    "font-awesome": "~4.5.0",
+    "jquery": "~2.1.4"
   },
   "overrides": {
     "bootstrap-sass": {
