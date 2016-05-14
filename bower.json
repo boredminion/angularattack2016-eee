@@ -1,12 +1,10 @@
 {
-  "name": "ng-seed",
-  "version": "1.0.1",
-  "homepage": "https://egen.io",
+  "name": "reading-ninja",
+  "version": "1.0.0",
   "authors": [
-    "<developer>@egen.io"
+    "Divyanshu mittal",
+    "Vamsi Kotagari"
   ],
-  "description": "ng-seed",
-  "license": "private",
   "dependencies": {
     "jquery": "~2.1.4",
     "angular": "~1.4.7",

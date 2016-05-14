@@ -1,26 +1,31 @@
-(function (angular) {
-  'use strict';
+(function() {
+    'use strict';
 
-  angular
-    .module('app', [
-      'ngAnimate',
-      'ngMessages',
-      'ngTouch',
-      'ui.router',
-      'ui.bootstrap',
-      'angular-loading-bar',
+    angular
+        .module('reading-ninja', [
 
-      'egen.app'
-    ])
-    .config(moduleConfig)
-    .run(moduleRun);
+            'ngSanitize',
+            'ngMessages',
+            'ui.router',
 
-  function moduleConfig($locationProvider) {
-    $locationProvider.html5Mode(true);
-  }
+            'reading-ninja.home',
+            'reading-ninja.services'
 
-  function moduleRun(CONFIG) {
-    console.log(CONFIG);
-  }
+        ])
+        .config(appConfig);
 
-})(angular);
+    /** @ngInject */
+    function appConfig($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.when('/reading-ninja', '/reading-ninja/home');
+
+        $urlRouterProvider.otherwise('/reading-ninja');
+
+        $stateProvider
+            .state('reading-ninja', {
+                url: '/reading-ninja',
+                abstract: true,
+                template: '<ui-view name="appView"></ui-view>'
+            });
+    }
+
+})();

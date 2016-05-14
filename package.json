@@ -1,29 +1,22 @@
 {
-  "name": "ng-seed",
-  "version": "1.0.1",
-  "description": "https://egen.io",
+  "name": "reading-ninja",
+  "version": "1.0.0",
   "config": {
     "API_END_POINTS": {
-      "local": "//localhost:8080/web-project",
-      "test": "//egen.io",
-      "prod": "//egen.io"
+      "local": "//localhost:8080/web-project"
     }
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/egensolutions/ng-seed.git"
+    "url": "https://github.com/rumblex/angularattack2016-eee"
   },
   "keywords": [
-    "ui-seed",
-    "egen",
-    "egen.solutions"
+    "reading-ninja"
   ],
   "author": [
-    "<developer>@egen.io"
+    "Divyanshu mittal",
+    "Vamsi Kotagari"
   ],
-  "license": "private",
-  "homepage": "https://egen.io",
-  "private": true,
   "dependencies": {},
   "scripts": {
     "test": "gulp test",
