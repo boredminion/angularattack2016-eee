@@ -7,8 +7,20 @@
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
   <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+  <!-- endbower -->
+
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/dist/css/index.css">
+  <!-- endinject -->
+
   <!-- run `gulp inject` to automatically populate bower styles dependencies -->
   <!-- endbower -->
   <!-- endbuild -->
