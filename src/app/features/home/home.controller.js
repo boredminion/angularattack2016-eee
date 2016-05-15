@@ -44,7 +44,7 @@
     }
 
     /** @ngInject */
-    function HomeController(homeService, $filter, $window, $timeout, $state) {
+    function HomeController(homeService, $filter, $window, $timeout, $state, userService) {
         var vm = this;
 
         vm.navigate = navigate;
@@ -153,6 +153,7 @@
               name: vm.name,
               password: vm.password
             };
+            userService.createUser(vm.user).then(function(result) { console.log('Result', result)});
             $state.go('reading-ninja.home');
         }
 
