@@ -34,7 +34,7 @@ html, body {
 
 .home {
   height: 100%;
-  font-size: 1.3em;
+  font-size: 1em;
   .reading-text {
     vertical-align: middle;
     padding: 10px;
@@ -43,7 +43,7 @@ html, body {
   }
 
   .tags-container {
-    padding: 15px 20px;
+    padding: 15px;
     .tags-inline {
       display: inline-block;
     }
@@ -105,5 +105,28 @@ html, body {
   .article-img {
     margin: 5px 0;
     border: solid 1px;
+    width: 100%;
+  }
+
+  .margin-top-20 {
+    margin-top: 20px;
+  }
+
+  .tab {
+    border: solid 1px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    &:hover {
+      font-weight:bold;
+      transform: scale(1.1);
+    }
+  }
+
+  .tab-active {
+    background-color: lightgrey;
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
   }
 }

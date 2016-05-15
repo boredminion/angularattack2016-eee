@@ -15,13 +15,13 @@
     <div>
         <div class="padding-10">
             <div class="row">
-                <div class="col col-md-4 article-section">
+                <div class="col col-xs-4 article-section">
                     <div ng-if="vm.isLogged">
                         Articles seen by you recently...
                     </div>
                     Article of the day
                     <div class="row">
-                        <div class="col col-md-12">
+                        <div class="col col-xs-12">
                             <img class="article-img" ng-src="{{vm.articleOfTheDay.img}}">
                             <span>{{vm.articleOfTheDay.abstract}}></span>
                             Read full artice at:
@@ -29,63 +29,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-md-8">
-                    What kind of articles/news do you want?
-                    <div class="row">
-                        <div class="tags-container">
-                            <div class="tags-inline" ng-repeat="category in vm.selectedCategories track by $index">
-                                <div class="tag-style">
-                                    <strong><span class="text-primary" ng-bind="category.name"></span></strong>
-                                    <span><i ng-click="vm.deleteCategory($index, category)" class="fa fa-times-circle"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="btn-group" uib-dropdown is-open="status.isopen">
-                        <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
-                            Category <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                            <li role="menuitem" ng-repeat="category in vm.categories" ng-click="vm.selectCategory(category)">
-                                <button class="dropdown-option"
-                                        ng-class="{'disabled' : category.selected}"
-                                        ng-disabled="category.selected">
-                                    {{category.name}}
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="col col-xs-8">
+                    <div ng-include="'app/features/home/partials/category-selector.html'"></div>
                     <div ng-if="vm.selectedCategories.length">
-                        <div class="padding-top-15">
-                            How much time do you have? <input type="text" class="width-50" value="{{vm.timeValue}}" readonly> minutes
-                        </div>
-                        <div class="padding-top-15">
-                            <input id="rangeSelector" type="range" ng-model="vm.timeValue" min="0" max="60" ng-change="vm.timeChanged()">
-                        </div>
-                        <div class="row">
-                            <div class="col col-md-1">0</div>
-                            <div class="col col-md-offset-10 col-1 align-right">60</div>
-                        </div>
-                        <div ng-if="vm.articles.length === 0">
-                            Sorry, No results found. Please select a different reading time.
-                        </div>
-                        <div ng-if="vm.articles.length > 0">
-                            {{vm.articles.length}} results found:
-                        </div>
-                        <div ng-repeat="article in vm.articles">
-                            <div class="article-info row">
-                                <div class="col col-md-8">
-                                    <strong><a  target="_blank" href="{{article.web_url}}">{{article.headline.main}}</a></strong>
-                                </div>
-                                <div class="col col-md-4">
-                                    <div ng-if="!article.multimedia[0]">
-                                        No image available
-                                    </div>
-                                    <div ng-if="article.multimedia[0]">
-                                        <img class="article-img" ng-src="https://static01.nyt.com/{{article.multimedia[0].url}}">
-                                    </div>
-                                </div>
+                        <div class="row margin-top-20">
+                            <div class="col col-xs-offset-1 col-xs-4 tab" ng-class="{'tab-active' : vm.isReadingTabActive}" ng-click="vm.tabChanged(true)">
+                                Based on Reading Time
                             </div>
+                            <div class="col col-xs-offset-1 col-xs-4 tab" ng-class="{'tab-active' : !vm.isReadingTabActive}" ng-click="vm.tabChanged(false)">
+                                Most popular
+                            </div>
+                        </div>
+                        <div ng-if="vm.isReadingTabActive">
+                            <div ng-include="'app/features/home/partials/reading-time-articles.html'"></div>
+                        </div>
+                        <div ng-if="!vm.isReadingTabActive">
+                            <div ng-include="'app/features/home/partials/most-popular-articles.html'"></div>
                         </div>
                     </div>
                 </div>

@@ -38,7 +38,7 @@
             var params = {};
             params['api-key'] = apiKey;
             request = {
-                url: 'http://api.nytimes.com/svc/mostpopular/v2/mostviewed/arts/30.json',
+                url: 'http://api.nytimes.com/svc/mostpopular/v2/mostviewed/movies,fashion/30.json',
                 method: 'GET',
                 params: params
             };
@@ -53,6 +53,30 @@
 
             return deferred.promise;
         };
+
+        self.getArticlesMostPopular = function(categories) {
+            var deferred = $q.defer();
+            var request;
+
+            var params = {};
+            params['api-key'] = apiKey;
+            request = {
+                url: 'http://api.nytimes.com/svc/mostpopular/v2/mostviewed/' + categories + '/30.json',
+                method: 'GET',
+                params: params
+            };
+
+            $http(request)
+                .success(function (result) {
+                    deferred.resolve(result);
+                })
+                .error(function(error) {
+                    deferred.reject(error);
+                });
+
+            return deferred.promise;
+        };
+        
 
         return self;
 

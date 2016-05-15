@@ -17,6 +17,7 @@
         vm.title = "Welcome Reading Ninja";
         vm.selectedCategories = [];
         vm.timeValue = 10;
+        vm.isReadingTabActive = true;
         vm.categories = [{
             name: 'Funny'
         }, {
@@ -36,6 +37,7 @@
         vm.selectCategory = selectCategory;
         vm.timeChanged = timeChanged;
         vm.deleteCategory = deleteCategory;
+        vm.tabChanged = tabChanged;
 
         init();
 
@@ -43,7 +45,6 @@
             homeService.getArticleOfTheDay().then(function (result  ) {
                 var results = result.results;
                 var random = Math.floor((Math.random() * (results.length - 1)) + 1);
-                console.log(results[random]);
                 vm.articleOfTheDay = {
                     abstract: results[random].abstract,
                     img: results[random].media[0]['media-metadata'][2].url,
@@ -53,18 +54,17 @@
         }
 
         function timeChanged() {
-            getArticles();
+            getArticlesForReadingTime();
         }
 
         function deleteCategory(index, category) {
             var categoryObj = _.find(vm.categories, category);
             categoryObj.selected = false;
             vm.selectedCategories.splice(index, 1);
-            getArticles();
+            vm.isReadingTabActive ? getArticlesForReadingTime() : getArticlesMostPopular();
         }
 
         function selectCategory(category) {
-
             category.selected = true;
             vm.selectedCategories.push(category);
 
@@ -75,16 +75,12 @@
                 vm.rangeSelectorInitialised = true;
             }
 
-            getArticles();
+            vm.isReadingTabActive ? getArticlesForReadingTime() : getArticlesMostPopular();
         };
 
-        function getArticles() {
-            var params, paramsKey = '';
-
-            _.forEach(vm.selectedCategories, function (selected, index) {
-                paramsKey += selected.name;
-                paramsKey += index !== vm.selectedCategories.length - 1 ? ',' : '';
-            });
+        function getArticlesForReadingTime() {
+            var params;
+            var paramsKey = joinSelectedTypes();
 
             params = {
                 q: paramsKey,
@@ -109,6 +105,30 @@
         function navigateLoggedIn() {
             vm.isLogged = true;
             $state.go('reading-ninja.home');
+        }
+
+        function tabChanged(reading) {
+            vm.isReadingTabActive = reading;
+            reading ? getArticlesForReadingTime() : getArticlesMostPopular();
+        }
+
+        function getArticlesMostPopular() {
+            var paramsKey = joinSelectedTypes();
+
+            homeService.getArticlesMostPopular(paramsKey).then(function (result) {
+                vm.articles = result.results;
+            });
+        }
+
+        function joinSelectedTypes() {
+            var paramsKey = '';
+
+            _.forEach(vm.selectedCategories, function (selected, index) {
+                paramsKey += selected.name;
+                paramsKey += index !== vm.selectedCategories.length - 1 ? ',' : '';
+            });
+
+            return paramsKey;
         }
     }
 })();
