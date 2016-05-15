@@ -3,14 +3,16 @@
         <a class="navbar-brand" href="#">Reading Ninja</a>
         <button class="btn pull-right Button" type="button" ng-click="vm.navigate()"> Sign Up</button>
         <button  uib-popover-template="vm.templateUrl" popover-title="Login" type="button" class="btn pull-right sign Button"
-                popover-placement="bottom" popover-trigger="outsideClick">
+                 popover-placement="bottom" popover-trigger="outsideClick">
             Log in
         </button>
     </div>
 </div>
 <div class="home">
     <div class="reading-text drop-shadow">
-        At Reading Ninja, we value your time and help you choose articles based on the time you have
+        <div>At Reading Ninja, we value you and your time, We help you choose articles based on the Reading time.
+            Excited? What are you waiting for? Select a category and get started
+        </div>
     </div>
     <div>
         <div class="padding-10">
@@ -19,12 +21,20 @@
                     <div ng-if="vm.isLogged">
                         Articles seen by you recently...
                     </div>
-                    Article of the day
+                    <strong class="some-font">Article of the day</strong>
                     <div class="row">
                         <div class="col col-xs-12">
                             <img class="article-img" ng-src="{{vm.articleOfTheDay.img}}">
-                            <span>{{vm.articleOfTheDay.abstract}}></span>
-                            Read full artice at:
+                            <div class="margin-10" ng-if="vm.articleOfTheDay.tags.length">
+                                <strong>Tags:</strong>
+                                <span class="outer-border" ng-repeat="tag in vm.articleOfTheDay.tags">
+                                    {{tag}}
+                                </span>
+                            </div>
+                            <div>{{vm.articleOfTheDay.abstract}}</div>
+                            <div>
+                                <strong>Read full artice at:</strong>
+                            </div>
                             <a class="break-word" target="_blank" href="{{vm.articleOfTheDay.url}}">{{vm.articleOfTheDay.url}}</a>
                         </div>
                     </div>

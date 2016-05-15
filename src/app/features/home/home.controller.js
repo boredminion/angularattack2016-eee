@@ -50,6 +50,7 @@
                 vm.articleOfTheDay = {
                     abstract: results[random].abstract,
                     img: results[random].media[0]['media-metadata'][2].url,
+                    tags: results[random].des_facet,
                     url: results[random].url
                 };
             });

@@ -155,10 +155,25 @@ html, body {
 
   .tab-active {
     background-color: lightgrey;
+    border: solid 2px;
   }
 
   .cursor-pointer {
     cursor: pointer;
+  }
+
+  .outer-border {
+    border: solid 1px;
+    padding: 1px;
+    margin-right: 3px;
+  }
+
+  .margin-10 {
+    margin: 10px 0;
+  }
+
+  .some-font {
+    font-family: 'Lucida Grande', sans-serif;
   }
 }
 
