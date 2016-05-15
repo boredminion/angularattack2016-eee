@@ -127,7 +127,7 @@ html, body {
   }
 
   .disabled {
-    color: grey;
+    color: lightgrey;
   }
 
   .align-right {
@@ -199,6 +199,12 @@ html, body {
 
   .some-font {
     font-family: 'Lucida Grande', sans-serif;
+  }
+
+  .dropdown-option {
+    &:hover {
+      transform: scaleY(1.3);
+    }
   }
 }
 

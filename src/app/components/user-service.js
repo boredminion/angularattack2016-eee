@@ -28,12 +28,10 @@
         };
 
         self.updateUser = function (user) {
-            console.log(user, self.users);
             var deferred = $q.defer();
             var userFound = _.find(self.users, {
                 name: user.name
             });
-            console.log(self.users);
             userFound.savedArticles = user.savedArticles;
             deferred.resolve(userFound);
             return deferred.promise;

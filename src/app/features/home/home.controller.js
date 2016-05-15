@@ -16,11 +16,13 @@
         vm.timeValue = 10;
         vm.isReadingTabActive = true;
         vm.categories = [{
-            name: 'Funny'
+            name: 'Crime'
+        }, {
+            name: 'Comedy'
         }, {
             name: 'Sports'
         }, {
-            name: 'Nature'
+            name: 'Music'
         }, {
             name: 'Movies'
         }, {
@@ -28,9 +30,9 @@
         }, {
             name: 'Hollywood'
         }, {
-            name: 'India'
+            name: 'Technology'
         }, {
-            name: 'International'
+            name: 'World'
         }];
 
         vm.selectCategory = selectCategory;
@@ -114,7 +116,6 @@
                 };
                 user.savedArticles = [];
                 userService.verifyUser(user).then(function(result) {
-                    console.log(result);
                     if(result) {
                         vm.user = result;
                         vm.isLoginPopupOpen = false;
@@ -153,10 +154,14 @@
         }
 
         function saveForLater(article) {
-            vm.user.savedArticles.push({
+            var articleToSave = {
                 abstract: article.abstract || article['lead_paragraph'],
                 url: article.url || article['web_url']
-            });
+            };
+
+            if (_.findIndex(vm.user.savedArticles, articleToSave) === -1) {
+                vm.user.savedArticles.push(articleToSave);
+            }
         }
 
         function signOut() {

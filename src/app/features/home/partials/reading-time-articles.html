@@ -1,6 +1,6 @@
 <div>
     <div class="padding-top-15">
-        How much time do you have: <input type="text" class="width-50" value="{{vm.timeValue}}" readonly> minutes
+        <strong>How much time do you have:</strong> <input type="text" class="width-50" value="{{vm.timeValue}}" readonly> minutes
     </div>
     <div class="padding-top-15">
         <input id="rangeSelector" type="range" ng-model="vm.timeValue" min="0" max="60" ng-change="vm.timeChanged()">
@@ -14,7 +14,7 @@
             No results found
         </div>
         <div ng-if="vm.articles.length > 0">
-            {{vm.articles.length}} results found:
+            {{vm.articles.length}} result(s) found:
         </div>
         <div ng-if="vm.articlesError">
             {{vm.articlesError}}
