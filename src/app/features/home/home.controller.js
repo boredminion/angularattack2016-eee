@@ -92,12 +92,15 @@
 
             homeService.getArticles(params).then(function (result) {
                 vm.articles = [];
+                vm.articlesError = undefined;
                 _.forEach(result.response.docs, function (doc) {
                     var readingTime = $filter('readingTimeFilter')(doc.word_count);
                     if(readingTime - 3 <= vm.timeValue  && vm.timeValue <= readingTime + 3) {
                         vm.articles.push(doc);
                     }
                 });
+            }, function () {
+                vm.articlesError = 'Sorry, the search API seems to be down, Please try again later';
             });
         }
 

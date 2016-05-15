@@ -1,6 +1,6 @@
 <div>
     <div class="padding-top-15">
-        How much time do you have? <input type="text" class="width-50" value="{{vm.timeValue}}" readonly> minutes
+        How much time do you have: <input type="text" class="width-50" value="{{vm.timeValue}}" readonly> minutes
     </div>
     <div class="padding-top-15">
         <input id="rangeSelector" type="range" ng-model="vm.timeValue" min="0" max="60" ng-change="vm.timeChanged()">
@@ -9,11 +9,16 @@
         <div class="col col-xs-1">0</div>
         <div class="col col-xs-offset-10 col-1 align-right">60</div>
     </div>
-    <div ng-if="vm.articles.length === 0">
-        No results found
-    </div>
-    <div ng-if="vm.articles.length > 0">
-        {{vm.articles.length}} results found:
+    <div class="margin-top-20">
+        <div ng-if="vm.articles.length === 0">
+            No results found
+        </div>
+        <div ng-if="vm.articles.length > 0">
+            {{vm.articles.length}} results found:
+        </div>
+        <div ng-if="vm.articlesError">
+            {{vm.articlesError}}
+        </div>
     </div>
     <div ng-repeat="article in vm.articles" class="article-list">
         <div class="article-info row">
