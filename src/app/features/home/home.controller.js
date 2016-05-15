@@ -8,9 +8,7 @@
     /** @ngInject */
     function HomeController(homeService, $filter, $window, $timeout, userService) {
         var vm = this;
-
-        vm.loginUser = loginUser;
-        vm.signOut = signOut;
+        
         vm.templateUrl = 'app/features/home/partials/login.html';
         vm.rangeSelectorInitialised = false;
         vm.title = "Welcome Reading Ninja";
@@ -39,7 +37,9 @@
         vm.timeChanged = timeChanged;
         vm.deleteCategory = deleteCategory;
         vm.tabChanged = tabChanged;
-        vm.read = read;
+        vm.saveForLater = saveForLater;
+        vm.loginUser = loginUser;
+        vm.signOut = signOut;
 
 
         init();
@@ -112,8 +112,11 @@
                     name: vm.name,
                     password: vm.password
                 };
-                userService.createUser(vm.user).then(function(result) { console.log('Result', result)});
+                vm.user.savedArticles = [];
                 vm.isLoginPopupOpen = false;
+                userService.createUser(vm.user).then(function(result) {
+                    console.log('Result', result);
+                });
             }
         }
 
@@ -142,8 +145,11 @@
             return paramsKey;
         }
 
-        function read(favObj) {
-            vm.user.readObj = favObj;
+        function saveForLater(article) {
+            vm.user.savedArticles.push({
+                abstract: article.abstract || article['lead_paragraph'],
+                url: article.url || article['web_url']
+            });
         }
 
         function signOut() {

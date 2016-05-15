@@ -20,12 +20,17 @@
             </div>
         </div>
         <div class="article-action row">
-            <a target="_blank" bookmark-page>
+            <a target="_blank" href="" bookmark-page>
                 <i class="fa fa-bookmark"></i> Save as Bookmark
             </a>
             <a target="_blank" href="https://twitter.com/intent/tweet?text={{article.url}}&screen_name=ninja_Reading">
                 <i class="fa fa-twitter"></i> Tweet
             </a>
+            <span ng-if="vm.user" class="article-action">
+                <a target="_blank" href="" ng-click="vm.saveForLater(article)">
+                    <i class="fa fa-floppy-o"></i> Save for later
+                </a>
+            </span>
         </div>
     </div>
 </div>
