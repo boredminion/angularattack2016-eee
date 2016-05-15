@@ -18,8 +18,24 @@
         <div class="padding-10">
             <div class="row">
                 <div class="col col-xs-4 article-section">
-                    <div ng-if="vm.isLogged">
-                        Articles seen by you recently...
+                    <div ng-if="vm.user">
+                        <strong class="some-font">Articles saved for later</strong>
+                        <div class="row">
+                            <div class="col col-xs-12">
+                                <img class="article-img" ng-src="{{vm.user.readObj.img}}">
+                                <div class="margin-10" ng-if="vm.user.readObj.tags.length">
+                                    <strong>Tags:</strong>
+                                <span class="outer-border" ng-repeat="tag in vm.user.readObj.tags">
+                                    {{tag}}
+                                </span>
+                                </div>
+                                <div>{{vm.user.readObj.abstract}}</div>
+                                <div>
+                                    <strong>Read full artice at:</strong>
+                                </div>
+                                <a class="break-word" target="_blank" href="{{vm.user.readObj.url}}">{{vm.user.readObj.url}}</a>
+                            </div>
+                        </div>
                     </div>
                     <strong class="some-font">Article of the day</strong>
                     <div class="row">
@@ -36,6 +52,9 @@
                                 <strong>Read full artice at:</strong>
                             </div>
                             <a class="break-word" target="_blank" href="{{vm.articleOfTheDay.url}}">{{vm.articleOfTheDay.url}}</a>
+                            <div ng-if="vm.user">
+                                <button class="btn btn-primary" type="button" ng-click="vm.read(vm.articleOfTheDay)">Read For Later</button>
+                            </div>
                         </div>
                     </div>
                 </div>

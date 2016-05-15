@@ -46,7 +46,6 @@
     /** @ngInject */
     function HomeController(homeService, $filter, $window, $timeout, $state) {
         var vm = this;
-        vm.isLogged = false;
 
         vm.navigate = navigate;
         vm.navigateLoggedIn = navigateLoggedIn;
@@ -78,6 +77,8 @@
         vm.timeChanged = timeChanged;
         vm.deleteCategory = deleteCategory;
         vm.tabChanged = tabChanged;
+        vm.read = read;
+
 
         init();
 
@@ -148,7 +149,10 @@
         }
 
         function navigateLoggedIn() {
-            vm.isLogged = true;
+            vm.user = {
+              name: vm.name,
+              password: vm.password
+            };
             $state.go('reading-ninja.home');
         }
 
@@ -175,6 +179,10 @@
             });
 
             return paramsKey;
+        }
+
+        function read(favObj) {
+            vm.user.readObj = favObj;
         }
     }
 })();
