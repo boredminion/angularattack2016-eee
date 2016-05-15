@@ -3,53 +3,15 @@
 
     angular
         .module('reading-ninja.home')
-        .controller('HomeController', HomeController)
-        .directive('bookmarkPage', BookmarkPage);
-    
-
-    function BookmarkPage($window, $location){
-        return {
-            restrict: "AEC",
-            link: function (scope, element, attrs) {
-                $(element).click(function (e) {
-                    var bookmarkURL = this.href;
-                    var bookmarkTitle = document.title;
-                    var triggerDefault = false;
-
-                    if ($window.sidebar && $window.sidebar.addPanel) {
-                        // Firefox version < 23
-                        $window.sidebar.addPanel(bookmarkTitle, bookmarkURL, '');
-                    } else if (($window.sidebar && (navigator.userAgent.toLowerCase().indexOf('firefox') > -1)) || ($window.opera && $window.print)) {
-                        // Firefox version >= 23 and Opera Hotlist
-                        var $this = $(this);
-                        $this.attr('href', bookmarkURL);
-                        $this.attr('title', bookmarkTitle);
-                        $this.attr('rel', 'sidebar');
-                        $this.off(e);
-                        triggerDefault = true;
-                    } else if ($window.external && ('AddFavorite' in $window.external)) {
-                        // IE Favorite
-                        $window.external.AddFavorite(bookmarkURL, bookmarkTitle);
-                    } else {
-                        // WebKit - Safari/Chrome
-                        alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Cmd' : 'Ctrl') + '+D to bookmark this page.');
-                        $window.external.AddFavorite(bookmarkURL, bookmarkTitle);
-                    }
-
-                    return triggerDefault;
-                });
-            }
-
-        }
-    }
+        .controller('HomeController', HomeController);
 
     /** @ngInject */
-    function HomeController(homeService, $filter, $window, $timeout, $state, userService) {
+    function HomeController(homeService, $filter, $window, $timeout, userService) {
         var vm = this;
 
-        vm.navigate = navigate;
-        vm.navigateLoggedIn = navigateLoggedIn;
-        vm.templateUrl = 'app/components/login-button/login-button.html';
+        vm.loginUser = loginUser;
+        vm.signOut = signOut;
+        vm.templateUrl = 'app/features/home/partials/login.html';
         vm.rangeSelectorInitialised = false;
         vm.title = "Welcome Reading Ninja";
         vm.selectedCategories = [];
@@ -134,7 +96,7 @@
                 vm.articlesError = undefined;
                 _.forEach(result.response.docs, function (doc) {
                     var readingTime = $filter('readingTimeFilter')(doc.word_count);
-                    if(readingTime - 3 <= vm.timeValue  && vm.timeValue <= readingTime + 3) {
+                    if(readingTime - 2 <= vm.timeValue  && vm.timeValue <= readingTime + 2) {
                         vm.articles.push(doc);
                     }
                 });
@@ -144,17 +106,15 @@
             });
         }
 
-        function navigate() {
-            $state.go('reading-ninja.signUp');
-        }
-
-        function navigateLoggedIn() {
-            vm.user = {
-              name: vm.name,
-              password: vm.password
-            };
-            userService.createUser(vm.user).then(function(result) { console.log('Result', result)});
-            $state.go('reading-ninja.home');
+        function loginUser(formValid) {
+            if(formValid) {
+                vm.user = {
+                    name: vm.name,
+                    password: vm.password
+                };
+                userService.createUser(vm.user).then(function(result) { console.log('Result', result)});
+                vm.isLoginPopupOpen = false;
+            }
         }
 
         function tabChanged(reading) {
@@ -184,6 +144,10 @@
 
         function read(favObj) {
             vm.user.readObj = favObj;
+        }
+
+        function signOut() {
+            vm.user = undefined;
         }
     }
 })();

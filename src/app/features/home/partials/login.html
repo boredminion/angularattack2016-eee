@@ -1,0 +1,9 @@
+<form class="form-group" name="loginForm">
+    <input class="margin-top-8" ng-model="vm.name" type="text" placeholder="Username" required/>
+    <input class="margin-top-8" ng-model="vm.password" type="password" placeholder="Password" required />
+    <div>
+        <button class="margin-top-8 btn btn-primary" type="submit" ng-click="vm.loginUser(loginForm.$valid)">
+            Login
+        </button>
+    </div>
+</form>

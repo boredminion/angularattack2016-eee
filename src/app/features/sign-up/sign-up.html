@@ -1,31 +1,22 @@
-<div class="navbar navbar-static-top">
-    <div class="container-fluid heading-top">
-        <a class="navbar-brand" href="#">Reading Ninja</a>
-        <button  uib-popover-template="vm.templateUrl" popover-title="Login" type="button" class="btn pull-right sign Button"
-                 popover-placement="bottom">
-            Log in
-        </button>
-    </div>
-</div>
-<div class="container">
-    <div class="padding-10">
-        <div class="row sign-up">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <h3 class="panel-heading">Join Reading Ninja Today</h3>
-                <div>
-                    <input class="text" type="text" placeholder="name" />
-                </div>
-                <div>
-                    <input  class="email" type="text" placeholder="Email" />
-                </div>
-                <div>
-                    <input class="password" type="password" placeholder="Passsword" />
-                </div>
-                <div>
-                    <input class="btn-primary success-up" name="commit" type="submit" value="Sign up" ng-click="vm.navigate()"/>
-                </div>
-            </div>
+<div>
+    <div class="navbar navbar-static-top">
+        <div class="container-fluid heading-top">
+            <a class="navbar-brand" href="#">Reading Ninja</a>
         </div>
     </div>
+        <div class="row sign-up">
+            <div class="col col-xs-offset-4 col-xs-4">
+                <h3 class="panel-heading">Join Reading Ninja Today</h3>
+                <form class="form-group" name="signUpForm">
+                    <input ng-model="vm.name" class="text" type="text" placeholder="Username" required/>
+                    <input type="email" class="email" name="email" required placeholder="Enter a valid email address">
+                    <input ng-model="vm.password" class="password" type="password" placeholder="Password" required />
+                    <div>
+                        <button class="btn btn-primary success-up" type="submit" ng-click="vm.navigate(signUpForm.$valid)">
+                            Sign up
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
 </div>

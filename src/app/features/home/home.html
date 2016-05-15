@@ -1,15 +1,28 @@
 <div class="navbar navbar-static-top">
     <div class="container-fluid heading-top">
-        <a class="navbar-brand" href="#">Reading Ninja</a>
-        <button class="btn pull-right Button" type="button" ng-click="vm.navigate()"> Sign Up</button>
-        <button  uib-popover-template="vm.templateUrl" popover-title="Login" type="button" class="btn pull-right sign Button"
-                 popover-placement="bottom" popover-trigger="outsideClick">
-            Log in
-        </button>
+        <a class="navbar-brand" href="#">
+            Reading Ninja
+        </a>
+        <div ng-if="!vm.user">
+            <button class="btn pull-right Button" type="button" ui-sref="reading-ninja.signUp"> Sign Up</button>
+            <button uib-popover-template="vm.templateUrl"
+                    popover-title="Login" type="button" class="btn pull-right sign Button login-background"
+                    popover-placement="bottom"
+                    popover-is-open = "vm.isLoginPopupOpen"
+                    popover-trigger="outsideClick">
+                Log in
+            </button>
+        </div>
+        <div ng-if="vm.user">
+            <button class="btn pull-right Button" type="button" ng-click="vm.signOut()"> Sign out</button>
+        </div>
     </div>
 </div>
 <div class="home">
-    <div class="reading-text drop-shadow">
+    <div ng-if="vm.user" class="panel">
+        <strong>Welcome back, {{vm.user.name}}</strong>
+    </div>
+    <div class="reading-text drop-shadow panel">
         <div>At Reading Ninja, we value you and your time, We help you choose articles based on the Reading time.
             Excited? What are you waiting for? Select a category and get started
         </div>

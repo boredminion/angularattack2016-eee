@@ -7,7 +7,7 @@
 
     function homeService($q, $http){
         var self = this;
-        var apiKey = 'ed023a9c67d14448bc9069ea3bd3f8e5';
+        var apiKey = 'db47e890b8494f4cb0e532e6af3dc79f';
 
         self.getArticles = function(params) {
             var deferred = $q.defer();
