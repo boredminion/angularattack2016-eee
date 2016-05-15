@@ -25,11 +25,13 @@
         }, {
             name: 'Nature'
         }, {
-            name: 'Politics'
+            name: 'Movies'
         }, {
             name: 'Fashion'
         }, {
-            name: 'Movies'
+            name: 'Hollywood'
+        }, {
+            name: 'India'
         }, {
             name: 'International'
         }];
@@ -115,6 +117,7 @@
         function getArticlesMostPopular() {
             var paramsKey = joinSelectedTypes();
 
+            vm.articles = [];
             homeService.getArticlesMostPopular(paramsKey).then(function (result) {
                 vm.articles = result.results;
             });

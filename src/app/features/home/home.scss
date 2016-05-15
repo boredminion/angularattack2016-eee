@@ -53,7 +53,7 @@ html, body {
 
 .home {
   height: 100%;
-  @include font-sz(1.3em);
+  @include font-sz(1em);
   padding: 0px 10px;
   @include font-wt(100);
   .reading-text {
@@ -62,6 +62,8 @@ html, body {
     background-color: lightblue;
   }
   .article-section{
+    border-right: double;
+    height: 100%;
     @include font-sz(1em);
     .row{
       font-style: normal;
@@ -133,10 +135,32 @@ html, body {
     border: solid 1px;
     width: 100%;
   }
+
+  .margin-top-20 {
+    margin-top: 20px;
+  }
+
+  .tab {
+    border: solid 1px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    &:hover {
+      font-weight:bold;
+      transform: scale(1.1);
+    }
+  }
+
+  .tab-active {
+    background-color: lightgrey;
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
 }
 
-@media (min-width: 992px){ 
+@media (min-width: 992px){
   .col-md-4.article-section {
-      border-right: double;
+    border-right: double;
   }
 }
