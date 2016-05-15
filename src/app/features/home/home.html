@@ -4,7 +4,7 @@
         <button class="btn pull-right Button
         " type="button" ng-click="vm.navigate()"> Sign Up</button>
         <button  uib-popover-template="vm.templateUrl" popover-title="Login" type="button" class="btn pull-right sign Button"
-                popover-placement="bottom">
+                popover-placement="bottom" popover-trigger="outsideClick">
             Log in
         </button>
     </div>
@@ -15,7 +15,7 @@
             <div class="col col-md-4 article-section">
                 Article of the day
             </div>
-            <div class="col col-md-8 category-section" ng-if="vm.isHome">
+            <div class="col col-md-8 category-section">
                 What kind of articles/news do you want?
                 <div class="row">
                     <div class="tags-container">
