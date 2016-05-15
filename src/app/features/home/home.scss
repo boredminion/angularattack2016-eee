@@ -9,18 +9,6 @@ html, body {
   font-size: 3em;
   padding: 10px;
   background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
-}
-
-.home {
-  height: 100%;
-  .heading {
-    height: 15%;
-    vertical-align: middle;
-    font-size: 3em;
-    padding: 10px;
-    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
-  }
-
   .Button {
     border-radius: 5px;
     border: 1px solid rgba(255,255,255,0.3);
@@ -39,6 +27,21 @@ html, body {
     text-decoration: none;
     -webkit-user-select: none;
   }
+  .sign {
+    margin-right: 10px;
+  }
+}
+
+.home {
+  height: 100%;
+  .heading {
+    height: 15%;
+    vertical-align: middle;
+    font-size: 3em;
+    padding: 10px;
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  }
+
 
   .tags-container {
     padding: 15px 20px;
