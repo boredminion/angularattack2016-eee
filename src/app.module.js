@@ -12,6 +12,7 @@
             'ui.bootstrap',
 
             'reading-ninja.home',
+            'reading-ninja.signUp',
             'reading-ninja.components'
 
         ])

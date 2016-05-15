@@ -6,8 +6,12 @@
         .controller('HomeController', HomeController);
 
     /** @ngInject */
-    function HomeController(homeService, $filter, $window, $timeout) {
+    function HomeController(homeService, $filter, $window, $timeout, $state) {
         var vm = this;
+        vm.isLogged = false;
+
+        vm.navigate = navigate;
+        vm.navigateLoggedIn = navigateLoggedIn;
         vm.templateUrl = 'app/components/login-button/login-button.html';
         vm.rangeSelectorInitialised = false;
         vm.title = "Welcome Reading Ninja";
@@ -82,6 +86,15 @@
                     }
                 });
             });
+        }
+
+        function navigate() {
+            $state.go('reading-ninja.signUp');
+        }
+
+        function navigateLoggedIn() {
+            vm.isLogged = true;
+            $state.go('reading-ninja.home');
         }
     }
 })();

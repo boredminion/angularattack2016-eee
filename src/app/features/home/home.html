@@ -2,10 +2,10 @@
     <div class="container-fluid heading-top">
         <a class="navbar-brand" href="#">Reading Ninja</a>
         <button class="btn pull-right Button
-        " type="button"> Sign Up</button>
+        " type="button" ng-click="vm.navigate()"> Sign Up</button>
         <button  uib-popover-template="vm.templateUrl" popover-title="Login" type="button" class="btn pull-right sign Button"
                 popover-placement="bottom">
-            Sign In
+            Log in
         </button>
     </div>
 </div>
@@ -15,7 +15,7 @@
             <div class="col col-md-4 article-section">
                 Article of the day
             </div>
-            <div class="col col-md-8 category-section">
+            <div class="col col-md-8 category-section" ng-if="vm.isHome">
                 What kind of articles/news do you want?
                 <div class="row">
                     <div class="tags-container">
@@ -71,6 +71,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col col-md-8 category-section" ng-if="vm.isLogged">
+                Articles seen by you recently...
             </div>
         </div>
     </div>
