@@ -138,6 +138,7 @@
                     }
                 });
             }, function () {
+                vm.articles = [];
                 vm.articlesError = 'Sorry, the search API seems to be down, Please try again later';
             });
         }
