@@ -1,7 +1,21 @@
+$font-stack: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@mixin font-wt($weight) {
+  font-weight: $weight;
+}
+
+@mixin font-sz($size) {
+  font-size: $size;
+}
+
 html, body {
   height: 100%;
+  width: 100%;
   margin: 0;
+  overflow-x: hidden;
 }
+
+
 
 .heading-top {
   height: 10%;
@@ -30,16 +44,32 @@ html, body {
   .sign {
     margin-right: 10px;
   }
+  .navbar-brand{
+    color: #fff;
+  }
 }
+
+
 
 .home {
   height: 100%;
-  font-size: 1em;
+  @include font-sz(1.3em);
+  padding: 0px 10px;
+  @include font-wt(100);
   .reading-text {
     vertical-align: middle;
     padding: 10px;
     background-color: lightblue;
-    margin: 5px;
+  }
+  .article-section{
+    @include font-sz(1em);
+    .row{
+      font-style: normal;
+      padding:10px 0px;
+      .col{
+        @include font-sz(0.8em);
+      }
+    }
   }
 
   .tags-container {
@@ -50,8 +80,8 @@ html, body {
   }
 
   .tag-style {
-    font-size: 1.5rem;
-    padding: 1px;
+    @include font-sz(1.5rem);
+    padding: 2px 5px;
     word-break: break-all;
     border: solid 1px;
     border-color: cadetblue;
@@ -64,10 +94,6 @@ html, body {
 
   .padding-top-15 {
     padding-top: 15px;
-  }
-
-  .article-section {
-    border-right: double;
   }
 
   .dropdown-option {
@@ -107,26 +133,10 @@ html, body {
     border: solid 1px;
     width: 100%;
   }
+}
 
-  .margin-top-20 {
-    margin-top: 20px;
-  }
-
-  .tab {
-    border: solid 1px;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-    &:hover {
-      font-weight:bold;
-      transform: scale(1.1);
-    }
-  }
-
-  .tab-active {
-    background-color: lightgrey;
-  }
-
-  .cursor-pointer {
-    cursor: pointer;
+@media (min-width: 992px){ 
+  .col-md-4.article-section {
+      border-right: double;
   }
 }
