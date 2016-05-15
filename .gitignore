@@ -3,4 +3,5 @@ npm-debug.log
 src/app/**/*.js.map
 .idea
 .tmp
+.dist
 bower_components

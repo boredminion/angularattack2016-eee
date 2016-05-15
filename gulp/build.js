@@ -20,7 +20,7 @@ gulp.task('partials', function () {
       quotes: true
     }))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
-      module: 'app',
+      module: 'reading-ninja',
       root: ''
     }))
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));

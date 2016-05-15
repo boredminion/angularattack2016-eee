@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('app')
+    .module('reading-ninja')
     .constant('CONFIG', {
       'VERSION':'N/A',
       'BUILD_DATE':'N/A',
