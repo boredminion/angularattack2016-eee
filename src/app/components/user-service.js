@@ -6,29 +6,37 @@
 
     function userService($q) {
         var self = this;
-        var users = [];
+        self.users = [];
+
+        self.verifyUser = function (user) {
+            var deferred = $q.defer();
+            var user = _.find(self.users, {
+                name: user.name,
+                password: user.password
+            });
+
+            deferred.resolve(user);
+
+            return deferred.promise;
+        };
 
         self.createUser = function (user) {
             var deferred = $q.defer();
-            users.push(user);
-            _.uniq(users);
-            deferred.resolve(users);
+            self.users.push(user);
+            deferred.resolve(user);
             return deferred.promise;
         };
 
-        self.getUser = function (user) {
+        self.updateUser = function (user) {
+            console.log(user, self.users);
             var deferred = $q.defer();
-            var findUser = _.findWhere(users, {name: user.name});
-            deferred.resolve(findUser);
+            var userFound = _.find(self.users, {
+                name: user.name
+            });
+            console.log(self.users);
+            userFound.savedArticles = user.savedArticles;
+            deferred.resolve(userFound);
             return deferred.promise;
         };
-
-        self.updateUser = function(user, articleObj) {
-            var deferred = $q.defer();
-            var obj = _.findWhere(users, {name: user.name});
-            obj.readObj(articleObj);
-            defer.resolve(obj);
-            return deferred.promise;
-        }
     }
 }(angular));

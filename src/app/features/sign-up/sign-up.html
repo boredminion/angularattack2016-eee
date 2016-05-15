@@ -9,7 +9,7 @@
                 <h3 class="panel-heading">Join Reading Ninja Today</h3>
                 <form class="form-group" name="signUpForm">
                     <input ng-model="vm.name" class="text" type="text" placeholder="Username" required/>
-                    <input type="email" class="email" name="email" required placeholder="Enter a valid email address">
+                    <input type="email" class="email" ng-model="vm.email" name="email" required placeholder="Enter a valid email address">
                     <input ng-model="vm.password" class="password" type="password" placeholder="Password" required />
                     <div>
                         <button class="btn btn-primary success-up" type="submit" ng-click="vm.navigate(signUpForm.$valid)">

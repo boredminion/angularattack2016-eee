@@ -108,14 +108,21 @@
 
         function loginUser(formValid) {
             if(formValid) {
-                vm.user = {
+                var user = {
                     name: vm.name,
                     password: vm.password
                 };
-                vm.user.savedArticles = [];
-                vm.isLoginPopupOpen = false;
-                userService.createUser(vm.user).then(function(result) {
-                    console.log('Result', result);
+                user.savedArticles = [];
+                userService.verifyUser(user).then(function(result) {
+                    console.log(result);
+                    if(result) {
+                        vm.user = result;
+                        vm.isLoginPopupOpen = false;
+                        vm.loginError = '';
+                    } else {
+                        vm.isLoginPopupOpen = true;
+                        vm.loginError = 'Sorry, The entered username and password didnt match! Sign up for a new account';
+                    }
                 });
             }
         }
@@ -153,6 +160,7 @@
         }
 
         function signOut() {
+            userService.updateUser(vm.user);
             vm.user = undefined;
         }
     }
