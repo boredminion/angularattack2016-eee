@@ -1,15 +1,13 @@
-<div class="home container">
-    <div class="row heading">
-        <div class="col col-md-8">
-            {{vm.title}}
-        </div>
-        <div class="col col-md-4">
-            <a class="Button">Sign up</a>
-            <a class="Button">Log in</a>
-        </div>
-
-
+<div class="navbar navbar-static-top">
+    <div class="container-fluid heading-top">
+        <a class="navbar-brand" href="#">Reading Ninja</a>
+        <button  uib-popover-template="vm.templateUrl" type="button" class="btn pull-right"
+                popover-placement="bottom">
+            Sign In
+        </button>
     </div>
+</div>
+<div class="home container">
     <div class="padding-10">
         <div class="row">
             <div class="col col-md-4 article-section">
