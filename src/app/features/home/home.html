@@ -1,79 +1,91 @@
 <div class="navbar navbar-static-top">
     <div class="container-fluid heading-top">
         <a class="navbar-brand" href="#">Reading Ninja</a>
-        <button class="btn pull-right Button
-        " type="button" ng-click="vm.navigate()"> Sign Up</button>
+        <button class="btn pull-right Button" type="button" ng-click="vm.navigate()"> Sign Up</button>
         <button  uib-popover-template="vm.templateUrl" popover-title="Login" type="button" class="btn pull-right sign Button"
                 popover-placement="bottom" popover-trigger="outsideClick">
             Log in
         </button>
     </div>
 </div>
-<div class="home container">
-    <div class="padding-10">
-        <div class="row">
-            <div class="col col-md-4 article-section">
-                Article of the day
-            </div>
-            <div class="col col-md-8 category-section">
-                What kind of articles/news do you want?
-                <div class="row">
-                    <div class="tags-container">
-                        <div class="tags-inline" ng-repeat="category in vm.selectedCategories track by $index">
-                            <div class="tag-style">
-                                <strong><span class="text-primary" ng-bind="category.name"></span></strong>
-                                <span><i ng-click="vm.deleteCategory($index, category)" class="fa fa-times-circle"></i></span>
-                            </div>
-                        </div>
+<div class="home">
+    <div class="reading-text drop-shadow">
+        At Reading Ninja, we value your time and help you choose articles based on the time you have
+    </div>
+    <div>
+        <div class="padding-10">
+            <div class="row">
+                <div class="col col-md-4 article-section">
+                    <div ng-if="vm.isLogged">
+                        Articles seen by you recently...
                     </div>
-                </div>
-                <div class="btn-group" uib-dropdown is-open="status.isopen">
-                    <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
-                        Category <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                        <li role="menuitem" ng-repeat="category in vm.categories" ng-click="vm.selectCategory(category)">
-                            <button class="dropdown-option"
-                                    ng-class="{'disabled' : category.selected}"
-                                    ng-disabled="category.selected">
-                                {{category.name}}
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-                <div ng-if="vm.selectedCategories.length">
-                    <div class="padding-top-15">
-                        How much time do you have? <input type="text" class="width-50" value="{{vm.timeValue}}" readonly> minutes
-                    </div>
-                    <div class="padding-top-15">
-                        <input id="rangeSelector" type="range" ng-model="vm.timeValue" min="0" max="60" ng-change="vm.timeChanged()">
-                    </div>
+                    Article of the day
                     <div class="row">
-                        <div class="col col-md-1">0</div>
-                        <div class="col col-md-offset-10 col-1 align-right">60</div>
+                        <div class="col col-md-12">
+                            <img class="article-img" ng-src="{{vm.articleOfTheDay.img}}">
+                            <span>{{vm.articleOfTheDay.abstract}}></span>
+                            Read full artice at:
+                            <a class="break-word" target="_blank" href="{{vm.articleOfTheDay.url}}">{{vm.articleOfTheDay.url}}</a>
+                        </div>
                     </div>
-                    <div ng-if="vm.articles.length === 0">
-                        Sorry, No results found. Please select a different reading time.
-                    </div>
-                    <div ng-if="vm.articles.length > 0">
-                        {{vm.articles.length}} results found:
-                    </div>
-                    <div ng-repeat="article in vm.articles">
-                        <div class="article-info">
-                            <div>
-                                <strong>Heading:</strong>
-                                {{article.headline.main}}
+                </div>
+                <div class="col col-md-8">
+                    What kind of articles/news do you want?
+                    <div class="row">
+                        <div class="tags-container">
+                            <div class="tags-inline" ng-repeat="category in vm.selectedCategories track by $index">
+                                <div class="tag-style">
+                                    <strong><span class="text-primary" ng-bind="category.name"></span></strong>
+                                    <span><i ng-click="vm.deleteCategory($index, category)" class="fa fa-times-circle"></i></span>
+                                </div>
                             </div>
-                            <div>
-                                <strong>Url:</strong>
-                                <a target="_blank" href="{{article.web_url}}">{{article.web_url}}</a>
+                        </div>
+                    </div>
+                    <div class="btn-group" uib-dropdown is-open="status.isopen">
+                        <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                            Category <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                            <li role="menuitem" ng-repeat="category in vm.categories" ng-click="vm.selectCategory(category)">
+                                <button class="dropdown-option"
+                                        ng-class="{'disabled' : category.selected}"
+                                        ng-disabled="category.selected">
+                                    {{category.name}}
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-if="vm.selectedCategories.length">
+                        <div class="padding-top-15">
+                            How much time do you have? <input type="text" class="width-50" value="{{vm.timeValue}}" readonly> minutes
+                        </div>
+                        <div class="padding-top-15">
+                            <input id="rangeSelector" type="range" ng-model="vm.timeValue" min="0" max="60" ng-change="vm.timeChanged()">
+                        </div>
+                        <div class="row">
+                            <div class="col col-md-1">0</div>
+                            <div class="col col-md-offset-10 col-1 align-right">60</div>
+                        </div>
+                        <div ng-if="vm.articles.length === 0">
+                            Sorry, No results found. Please select a different reading time.
+                        </div>
+                        <div ng-if="vm.articles.length > 0">
+                            {{vm.articles.length}} results found:
+                        </div>
+                        <div ng-repeat="article in vm.articles">
+                            <div class="article-info panel">
+                                <div>
+                                    <strong>Heading:</strong>
+                                    {{article.headline.main}}
+                                </div>
+                                <div>
+                                    <strong>Url:</strong>
+                                    <a target="_blank" href="{{article.web_url}}">{{article.web_url}}</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col col-md-8 category-section" ng-if="vm.isLogged">
-                Articles seen by you recently...
             </div>
         </div>
     </div>

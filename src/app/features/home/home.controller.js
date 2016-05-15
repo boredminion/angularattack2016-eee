@@ -37,6 +37,21 @@
         vm.timeChanged = timeChanged;
         vm.deleteCategory = deleteCategory;
 
+        init();
+
+        function init() {
+            homeService.getArticleOfTheDay().then(function (result  ) {
+                var results = result.results;
+                var random = Math.floor((Math.random() * (results.length - 1)) + 1);
+                console.log(results[random]);
+                vm.articleOfTheDay = {
+                    abstract: results[random].abstract,
+                    img: results[random].media[0]['media-metadata'][2].url,
+                    url: results[random].url
+                };
+            });
+        }
+
         function timeChanged() {
             getArticles();
         }
@@ -65,7 +80,6 @@
 
         function getArticles() {
             var params, paramsKey = '';
-            vm.articles = [];
 
             _.forEach(vm.selectedCategories, function (selected, index) {
                 paramsKey += selected.name;
@@ -73,12 +87,12 @@
             });
 
             params = {
-                'api-key': 'ed023a9c67d14448bc9069ea3bd3f8e5',
                 q: paramsKey,
                 sort: 'newest'
             };
 
             homeService.getArticles(params).then(function (result) {
+                vm.articles = [];
                 _.forEach(result.response.docs, function (doc) {
                     var readingTime = $filter('readingTimeFilter')(doc.word_count);
                     if(readingTime - 3 <= vm.timeValue  && vm.timeValue <= readingTime + 3) {
