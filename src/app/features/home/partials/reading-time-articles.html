@@ -15,7 +15,7 @@
     <div ng-if="vm.articles.length > 0">
         {{vm.articles.length}} results found:
     </div>
-    <div ng-repeat="article in vm.articles">
+    <div ng-repeat="article in vm.articles" class="article-list">
         <div class="article-info row">
             <div class="col col-xs-8">
                 <strong><a  target="_blank" href="{{article.web_url}}">{{article.headline.main}}</a></strong>
@@ -28,6 +28,9 @@
                     <img class="article-img" ng-src="https://static01.nyt.com/{{article.multimedia[0].url}}">
                 </div>
             </div>
+        </div>
+        <div> 
+            
         </div>
     </div>
 </div>

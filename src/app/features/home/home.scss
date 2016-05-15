@@ -120,13 +120,16 @@ html, body {
     width: 50px;
   }
 
-  .article-info {
+  .article-list {
     background-color: $light-gray;
     border: 1px solid #CCC;
     margin: 5px;
-    padding: 3px;
     box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
     background-image: linear-gradient( 90deg, #10B9AF 10px, #EEE 10px, #EEE 11px, transparent 11px);
+    .article-info{
+      padding: 3px;
+      margin: 5px;
+    }
   }
 
   .break-word {

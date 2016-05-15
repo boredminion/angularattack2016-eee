@@ -5,7 +5,7 @@
     <div ng-if="vm.articles.length > 0">
         {{vm.articles.length}} results found:
     </div>
-    <div ng-repeat="article in vm.articles">
+    <div ng-repeat="article in vm.articles" class="article-list">
         <div class="article-info row">
             <div class="col col-xs-8">
                 <strong><a  target="_blank" href="{{article.url}}">{{article.abstract}}</a></strong>
