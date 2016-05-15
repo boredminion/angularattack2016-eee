@@ -12,7 +12,7 @@
             'ui.bootstrap',
 
             'reading-ninja.home',
-            'reading-ninja.services'
+            'reading-ninja.components'
 
         ])
         .config(appConfig);

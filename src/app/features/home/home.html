@@ -1,7 +1,7 @@
 <div class="home container">
     <div class="row heading">
         <div class="col col-md-8">
-            Reading Ninja welcomes you
+            {{vm.title}}
         </div>
         <div class="col col-md-4">
             <a class="Button">Sign up</a>
@@ -43,7 +43,7 @@
                 </div>
                 <div ng-if="vm.selectedCategories.length">
                     <div class="padding-top-15">
-                        How much time do you have? <input type="text" value="{{vm.timeValue}}" readonly> minutes
+                        How much time do you have? <input type="text" class="width-50" value="{{vm.timeValue}}" readonly> minutes
                     </div>
                     <div class="padding-top-15">
                         <input type="range" ng-model="vm.timeValue" min="0" max="60" ng-change="vm.timeChanged()">
@@ -52,8 +52,24 @@
                         <div class="col col-md-1">0</div>
                         <div class="col col-md-offset-10 col-1 align-right">60</div>
                     </div>
+                    Results:
+                    <div ng-repeat="article in vm.articles">
+                        <div class="article-info">
+                            <div>
+                                <strong>Heading:</strong>
+                                {{article.headline.main}}
+                            </div>
+                            <div>
+                                <strong>Url:</strong>
+                                <a target="_blank" href="{{article.web_url}}">{{article.web_url}}</a>
+                            </div>
+                            <div>
+                                <strong>Reading time:</strong>
+                                {{article.word_count | readingTimeFilter}} minutes
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>

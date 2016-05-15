@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('reading-ninja.services')
+        .module('reading-ninja.components')
         .service('homeService', homeService);
 
     function homeService($q, $http){
