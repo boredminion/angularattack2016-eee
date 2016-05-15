@@ -8,7 +8,7 @@
     /** @ngInject */
     function HomeController(homeService) {
         var vm = this;
-        vm.templateUrl = 'src/app/features/home/login-button.html';
+        vm.templateUrl = 'app/components/login-button/login-button.html';
         vm.title = "Welcome Reading Ninja";
         vm.selectedCategories = [];
         vm.timeValue = 30;
