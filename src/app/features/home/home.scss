@@ -61,17 +61,27 @@ html, body {
     padding: 10px;
     background-color: lightblue;
   }
+  .article-section{
+    @include font-sz(1em);
+    .row{
+      font-style: normal;
+      padding:10px 0px;
+      .col{
+        @include font-sz(0.8em);
+      }
+    }
+  }
 
   .tags-container {
-    padding: 15px 20px;
+    padding: 15px;
     .tags-inline {
       display: inline-block;
     }
   }
 
   .tag-style {
-    font-size: 1.5rem;
-    padding: 1px;
+    @include font-sz(1.5rem);
+    padding: 2px 5px;
     word-break: break-all;
     border: solid 1px;
     border-color: cadetblue;
@@ -84,10 +94,6 @@ html, body {
 
   .padding-top-15 {
     padding-top: 15px;
-  }
-
-  .article-section {
-    border-right: double;
   }
 
   .dropdown-option {
@@ -126,5 +132,11 @@ html, body {
     margin: 5px 0;
     border: solid 1px;
     width: 100%;
+  }
+}
+
+@media (min-width: 992px){ 
+  .col-md-4.article-section {
+      border-right: double;
   }
 }
