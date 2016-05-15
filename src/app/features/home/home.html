@@ -73,14 +73,17 @@
                             {{vm.articles.length}} results found:
                         </div>
                         <div ng-repeat="article in vm.articles">
-                            <div class="article-info panel">
-                                <div>
-                                    <strong>Heading:</strong>
-                                    {{article.headline.main}}
+                            <div class="article-info row">
+                                <div class="col col-md-8">
+                                    <strong><a  target="_blank" href="{{article.web_url}}">{{article.headline.main}}</a></strong>
                                 </div>
-                                <div>
-                                    <strong>Url:</strong>
-                                    <a target="_blank" href="{{article.web_url}}">{{article.web_url}}</a>
+                                <div class="col col-md-4">
+                                    <div ng-if="!article.multimedia[0]">
+                                        No image available
+                                    </div>
+                                    <div ng-if="article.multimedia[0]">
+                                        <img class="article-img" ng-src="https://static01.nyt.com/{{article.multimedia[0].url}}">
+                                    </div>
                                 </div>
                             </div>
                         </div>
