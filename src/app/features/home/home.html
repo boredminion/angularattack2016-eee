@@ -23,11 +23,15 @@
     </div>
     <div class="reading-text drop-shadow panel">
         <div>
-            <strong>A</strong>t Reading Ninja, we value you and your time. We help you choose articles based on the <strong>Reading time</strong>.
-            Excited? What are you waiting for, Select a category and get started
-        </div>
-        <div ng-if="!vm.user">
-            <strong>C</strong>reate an account to be able to save articles.
+            <div>
+                <strong>A</strong>t Reading Ninja, we value you and your time. We help you choose articles based on the <strong>Reading time</strong>.
+                <div class="padding-left-20">
+                    <strong>E</strong>xcited? What are you waiting for, Select a category and get started
+                </div>
+            </div>
+            <div ng-if="!vm.user" class="padding-left-40">
+                <strong>C</strong>reate an account to be able to save articles.
+            </div>
         </div>
     </div>
     <div>
@@ -63,7 +67,7 @@
                                     <i class="fa fa-bookmark"></i> Save as Bookmark
                                 </a>
                                 <a target="_blank" href="https://twitter.com/intent/tweet?text={{vm.articleOfTheDay.url}}&screen_name=ninja_Reading">
-                                    <i class="fa fa-twitter"></i> Tweet  
+                                    <i class="fa fa-twitter"></i> Tweet
                                 </a>
                                 <spa ng-if="vm.user" class="article-action">
                                     <a target="_blank" href="" ng-click="vm.saveForLater(vm.articleOfTheDay)">
